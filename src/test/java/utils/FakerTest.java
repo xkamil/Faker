@@ -57,4 +57,10 @@ public class FakerTest {
         System.out.println(postal);
         assertTrue(postal.matches("^\\d{3}%\\d{3}$"));
     }
+
+    @Test
+    public void test_stringFromPattern(){
+        String postal = Faker.stringFromPattern("LLNNSS");
+        System.out.println(postal);
+    }
 }

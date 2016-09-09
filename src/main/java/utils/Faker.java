@@ -30,6 +30,12 @@ public class Faker {
         return names.get(id);
     }
 
+    /**
+     *
+     * @param format - sample: "xx-xxx"
+     * @param delimiter - sample: '-'
+     * @return - sample
+     */
     public static String postalCode(String format, char delimiter){
         StringBuilder postal = new StringBuilder();
 
@@ -67,5 +73,26 @@ public class Faker {
         }
         return phone.toString();
 
+    }
+
+    public static String stringFromPattern(String pattern){
+        String letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String special = "`~!@#$%^&*()_-+={[}]|\\:;\"'?/>.<,'";
+
+        StringBuilder sb = new StringBuilder();
+
+        for(char character : pattern.toCharArray()){
+            if(character == 'L'){
+                int id = rnd.nextInt(letters.length()-1);
+                sb.append(letters.toCharArray()[id]);
+            }else if(character == 'S'){
+                int id = rnd.nextInt(special.length()-1);
+                sb.append(special.toCharArray()[id]);
+            }else if(character == 'N'){
+                int id = rnd.nextInt(10);
+                sb.append(id);
+            }
+        }
+        return sb.toString();
     }
 }
