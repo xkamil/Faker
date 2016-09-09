@@ -10,6 +10,7 @@ public class Faker {
     public static String FIRST_NAME = "data/firstname.txt";
     public static String LAST_NAME = "data/lastname.txt";
     public static String CITY = "data/city.txt";
+    public static String WORD = "data/words.txt";
     public static Random rnd = new Random();
 
     public static String name(){
@@ -93,6 +94,40 @@ public class Faker {
                 sb.append(id);
             }
         }
+        return sb.toString();
+    }
+
+    public static String text(int minLength, int maxLength){
+        int length = 0;
+        if(minLength <= maxLength){
+            length = minLength;
+        }else{
+            length = rnd.nextInt(maxLength - minLength) + minLength;
+        }
+        List<String> words = DataParser.getDataFromFile(WORD);
+
+        StringBuilder sb = new StringBuilder();
+
+        while(sb.toString().length() < length){
+            int id = rnd.nextInt(words.size());
+            sb.append(words.get(id));
+            sb.append(" ");
+        }
+
+        String text = sb.toString().substring(0, length);
+        return text;
+    }
+
+    public static String number(int length){
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0 ; i < length ; i++){
+            if(i == 0){
+                sb.append(rnd.nextInt(9)+1);
+            }else{
+                sb.append(rnd.nextInt(10));
+            }
+        }
+
         return sb.toString();
     }
 }

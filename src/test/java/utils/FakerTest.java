@@ -63,4 +63,21 @@ public class FakerTest {
         String postal = Faker.stringFromPattern("LLNNSS");
         System.out.println(postal);
     }
+
+    @Test
+    public void test_text(){
+        String text = Faker.text(40,50);
+        System.out.println(text);
+        assertTrue(text.length() >= 40 && text.length() <= 50);
+    }
+
+    @Test
+    public void test_number(){
+        for(int i = 0; i < 10; i++){
+            String number = Faker.number(i*i);
+            System.out.println(number);
+            assertTrue(number.length() == i*i);
+        }
+    }
+
 }
